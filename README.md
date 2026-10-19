@@ -1,33 +1,42 @@
 # Home Credit LAP — Qualify Desk
 
-Public notes for the SalesAgents AI voice-agent assignment (Vamshi Vardhan).
+Qualify Desk is a small web application and qualification-engine demo built for a Loan Against Property (LAP) voice-agent assignment. It applies defined business rules to a customer conversation and records whether the case can continue, should be transferred, or must end.
 
-## What was built
+## What it covers
 
-Qualify Desk is a working rehearsal app for Home Credit's Loan Against Property qualifier. It implements the assignment rules, not a yes/no script.
+- Captures seven core qualification areas: property type, ownership, availability of original documents, requested loan amount, occupation and income mode, property market value, and tenure.
+- Tracks responses even when a customer provides details out of order.
+- Handles disqualification conditions such as agricultural property, unavailable original documents, cash income, and tenure outside the configured 3–15 year range.
+- Offers a capped amount where the requested loan exceeds ₹75 lakh and continues only if the customer accepts.
+- Routes existing-loan or EMI-reduction requests to a senior loan expert.
+- Includes a scenario lab and reference transcripts for testing call outcomes.
+- Includes automated tests for the qualification engine.
 
-- Call floor: reply as the customer. The checklist updates as facts arrive, including facts given out of order.
-- The call stops immediately on agricultural property, cash income, missing originals, tenure outside 3–15 years, an existing loan or EMI-reduction request, or a request above ₹75 lakh that the customer refuses.
-- Above ₹75 lakh, the agent offers the ₹75 lakh cap and continues only if accepted.
-- Handoff to a senior loan expert happens only after all 7 points pass. No invented interest rate, fee, branch, or minimum property value.
-- System prompt with the required variables (`customer_name`, `agent_name`, `agent_gender`, `language_to_speak`, date/day/time, `additional_context_from_rag`, utterance, history), copy-ready for Retell or Bolna. Hindi gender agreement is specified.
-- Scenario lab with expected outcomes and reference transcripts.
-- Approach write-up of the easy-to-miss rules.
-- 35 automated tests on the qualification engine.
+## Technology
 
-## GitHub
+- TypeScript
+- React
+- TanStack Router / Start
+- Vite
+- Zod
+- Automated tests
 
-- This public repo: https://github.com/vamshivardhan22/home-credit-lap-qualify-desk
-- Full app export (private workspace repo): https://github.com/vamshivardhan22/lilac-sage-lunar-wave
+## Repository links
 
-## How a clean file sounds
+- [Qualify Desk application](https://github.com/vamshivardhan22/lilac-sage-lunar-wave)
+- [Related qualification demo](https://github.com/vamshivardhan22/fjord-daisy-nova-hill)
 
-1. Yes, this is Rahul.
-2. Yes, please go ahead.
-3. It's a residential flat worth about 1 crore, and I'm the sole owner.
-4. Yes, the original documents are at home.
-5. I need 50 lakh.
-6. I'm salaried and my salary comes into my bank account.
-7. I'd like 10 years.
+## Run locally
 
-Expected result: senior loan expert handoff. Saying the property is agricultural land after the offer ends the call at once.
+Requirements: Node.js and npm.
+
+```bash
+git clone https://github.com/vamshivardhan22/home-credit-lap-qualify-desk.git
+cd home-credit-lap-qualify-desk
+```
+
+The repository currently contains the assignment README and supporting notes. To run the interactive application, use the linked application repository above and follow its project setup instructions.
+
+## Important note
+
+This project demonstrates rule-based qualification and call handling. It is not a credit decision system and does not replace formal lender underwriting. Confirm all thresholds and eligibility rules with the lender before any operational use. Do not put real customer information into a public demo.
